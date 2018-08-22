@@ -1,0 +1,46 @@
+﻿<UserControl
+    x:Class="SerialCommMonitor.View.FileLocationConfig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SerialCommMonitor.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <StackPanel>
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Label Content="Filename:" Margin="0,0,10,0" FontWeight="Bold" />
+            <TextBlock VerticalAlignment="Center">
+                <Hyperlink Command="{Binding OpenContactIdXmlCommand}"
+                           CommandParameter="{Binding ContactIdXmlFilename}">
+                    <TextBlock Text="{Binding ContactIdXmlFilename, FallbackValue=ContactIdXmlFilename}" />
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock VerticalAlignment="Center"
+                       Margin="10,0,0,0"
+                       Text="{Binding FileStatus, FallbackValue=FileStatus}"
+                       Foreground="{Binding FileStatusForeground}" />
+            <Button Margin="10,0,0,0"
+                    Padding="5,0,5,0"
+                    Content="Validate File"
+                    Command="{Binding ValidateFileCommand}"
+                    CommandParameter="{Binding ContactIdXmlFilename}" />
+            <Button Margin="10,0,0,0"
+                    Padding="5,0,5,0"
+                    Content="Reload File"
+                    Command="{Binding ReloadFileCommand}"
+                    CommandParameter="{Binding ContactIdXmlFilename}" />
+        </StackPanel>
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Label Content="Select output data directory:" Margin="0,0,10,0" FontWeight="Bold" />
+            <TextBox VerticalContentAlignment="Center"
+                     Text="{Binding OutputDataDirectory, FallbackValue=OutputDataDirectory}"
+                     Width="200" />
+            <Button Margin="10,0,0,0"
+                    Padding="5,0,5,0"
+                    Content="Browse..."
+                    Command="{Binding SelectOutputDataDirectoryCommand}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

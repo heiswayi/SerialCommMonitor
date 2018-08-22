@@ -1,0 +1,93 @@
+﻿<UserControl
+    x:Class="SerialCommMonitor.View.SerialPortConfig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SerialCommMonitor.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+            <StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="" />
+                <CheckBox
+                    Width="150"
+                    VerticalContentAlignment="Center"
+                    Content="Enable"
+                    IsChecked="{Binding IsSerialPortEnabled, FallbackValue=True}" />
+            </StackPanel>
+            <StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="Receiver Name:" FontWeight="Bold" />
+                <TextBox Width="150" VerticalContentAlignment="Center"
+                         Text="{Binding ReceiverName, FallbackValue=ReceiverName, Mode=TwoWay}" />
+            </StackPanel>
+            <StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="Description:" FontWeight="Bold" />
+                <TextBox
+                    Width="150"
+                    Height="50"
+                    VerticalContentAlignment="Top"
+                    Text="{Binding Description, FallbackValue=Description, Mode=TwoWay}" />
+            </StackPanel>
+            <!--<StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="Termination:" FontWeight="Bold" />
+                <TextBox
+                    Width="150"
+                    VerticalContentAlignment="Center"
+                    Text="{Binding TerminationChar, FallbackValue=TerminationChar, Mode=TwoWay}" />
+            </StackPanel>-->
+        </StackPanel>
+
+        <Separator
+            Grid.Column="1"
+            Margin="10,0"
+            HorizontalAlignment="Left"
+            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+
+        <StackPanel Grid.Column="2" HorizontalAlignment="Left">
+            <StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="Port name:" FontWeight="Bold" />
+                <ComboBox Width="150" VerticalContentAlignment="Center"
+                          ItemsSource="{Binding PortNameList}"
+                          SelectedItem="{Binding SelectedPortName}" />
+            </StackPanel>
+            <StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="Baud rate:" FontWeight="Bold" />
+                <ComboBox Width="150" VerticalContentAlignment="Center"
+                          ItemsSource="{Binding BaudRateList}"
+                          SelectedItem="{Binding SelectedBaudRate}" />
+            </StackPanel>
+            <StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="Data bits:" FontWeight="Bold" />
+                <ComboBox Width="150" VerticalContentAlignment="Center"
+                          ItemsSource="{Binding DataBitsList}"
+                          SelectedItem="{Binding SelectedDataBits}" />
+            </StackPanel>
+            <StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="Parity:" FontWeight="Bold" />
+                <ComboBox Width="150" VerticalContentAlignment="Center"
+                          ItemsSource="{Binding ParityList}"
+                          SelectedItem="{Binding SelectedParity}" />
+            </StackPanel>
+            <StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="Stop bits:" FontWeight="Bold" />
+                <ComboBox Width="150" VerticalContentAlignment="Center"
+                          ItemsSource="{Binding StopBitsList}"
+                          SelectedItem="{Binding SelectedStopBits}" />
+            </StackPanel>
+            <StackPanel Margin="0,2" Orientation="Horizontal">
+                <Label Width="100" Content="Handshake:" FontWeight="Bold" />
+                <ComboBox Width="150" VerticalContentAlignment="Center"
+                          ItemsSource="{Binding HandshakeList}"
+                          SelectedItem="{Binding SelectedHandshake}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

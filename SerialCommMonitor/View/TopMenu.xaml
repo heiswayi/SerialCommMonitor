@@ -1,0 +1,47 @@
+﻿<UserControl
+    x:Class="SerialCommMonitor.View.TopMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SerialCommMonitor.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="CustomMenuItemMouseOver" TargetType="MenuItem">
+            <Setter Property="Foreground" Value="White" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Menu
+        Padding="5"
+        FontFamily="Consolas">
+        <MenuItem Header="File">
+            <MenuItem Header="Exit"
+                      Command="{Binding ExitCommand}" />
+        </MenuItem>
+        <Separator
+            Height="20"
+            Margin="10,0"
+            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        <MenuItem Header="START LISTENING"
+                  Style="{StaticResource CustomMenuItemMouseOver}"
+                  Background="Green"
+                  Command="{Binding StartCommand}" />
+        <MenuItem Header="STOP"
+                  Style="{StaticResource CustomMenuItemMouseOver}"
+                  Background="Red"
+                  Command="{Binding StopCommand}" />
+        <Separator
+            Height="20"
+            Margin="10,0"
+            Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        <MenuItem Header="About"
+                  Command="{Binding AboutCommand}" />
+    </Menu>
+</UserControl>

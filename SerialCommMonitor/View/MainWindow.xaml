@@ -1,0 +1,65 @@
+﻿<Window
+    x:Class="SerialCommMonitor.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SerialCommMonitor.View"
+    xmlns:vm="clr-namespace:SerialCommMonitor.ViewModel"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding AppTitle, FallbackValue=AppTitle}"
+    Width="600"
+    Height="600"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <ControlTemplate x:Key="validationTemplate">
+            <Grid>
+                <Rectangle
+                                Width="10"
+                                Height="10"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Fill="Red"
+                                Opacity="0.8"
+                                ToolTip="{Binding Path=/ErrorContent}" />
+                <AdornedElementPlaceholder />
+            </Grid>
+        </ControlTemplate>
+        <BooleanToVisibilityConverter x:Key="bool2vis" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <local:TopMenu Grid.Row="0" DataContext="{Binding TopMenuVM}" />
+        <Grid Grid.Row="1">
+            <GroupBox Margin="5" Header="Configurations">
+                <TabControl Margin="5">
+                    <TabItem Header="Contact ID XML">
+                        <Grid IsEnabled="{Binding IsEnabledFileConfVM}">
+                            <local:FileLocationConfig DataContext="{Binding FileLocationConfigVM}" />
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Serial Port 1">
+                        <Grid IsEnabled="{Binding IsEnabledSerialPortVM}">
+                            <local:SerialPortConfig DataContext="{Binding SerialPortConfigVM}" />
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </GroupBox>
+        </Grid>
+        <local:OutputWindow Grid.Row="2" DataContext="{Binding OutputWindowVM}" />
+        <Grid Grid.Row="3">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Margin="5"
+                    Padding="3"
+                    FontFamily="Consolas"
+                    Text="{Binding BottomStatusText, FallbackValue=BottomStatusText}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
